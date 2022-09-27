@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<datafluxdocument class="architectjob" version="1.2">
+
+  <jobid id="4"/>
+
+  <propset>
+    <prop name="_DESCRIPTION">
+      <value dtype="String"></value>
+    </prop>
+    <prop name="_NOTES">
+      <value dtype="String"></value>
+    </prop>
+    <prop name="AutoLayoutRequired"/>
+    <prop name="DefaultLayout">
+      <value dtype="String">LeftToRight</value>
+    </prop>
+    <prop name="GroupNodes"/>
+    <prop name="name">
+      <value dtype="String">DIFT Verify Addresses Data Service</value>
+    </prop>
+    <prop name="ShowGridLines">
+      <value dtype="String">True</value>
+    </prop>
+    <prop name="SnapToGrid">
+      <value dtype="String">False</value>
+    </prop>
+    <prop name="STICKYNOTES"/>
+    <prop name="ZoomLevel">
+      <value dtype="String">26</value>
+    </prop>
+  </propset>
+
+  <paramset>
+    <param name="WFINPUTS" type="matrix"/>
+    <param name="WFOUTPUTS" type="matrix"/>
+  </paramset>
+
+  <page>
+    <propset>
+      <prop name="serial_targets"/>
+    </propset>
+    <step id="EXT_PROVIDER" iid="1">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">External Data Provider</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Defines generic address info</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">10</value>
+          <value dtype="String">10</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param name="EXPECTED" type="matrix">
+          <row>
+            <col dtype="String" name="NAME">Address</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">200</col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">City</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">50</col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">State</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">15</col>
+          </row>
+        </param>
+        <param dtype="Unknown" isnull="true" name="MAX_OUTPUT_ROWS" type="single"></param>
+        <param dtype="Integer" name="STRING_BYTESPERCHAR" type="single">4</param>
+      </paramset>
+    </step>
+    <step id="ADDRESS_VERIFY" iid="2">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target">
+          <value dtype="String">True</value>
+        </prop>
+        <prop name="description">
+          <value dtype="String">Address Verification (US/Canada)</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Verifies addresses</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">211</value>
+          <value dtype="String">10</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param dtype="String" name="ADDRESS_TYPE" type="single">USA</param>
+        <param dtype="Unknown" isnull="true" name="USPS_PATH" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="CANADA_PATH" type="single"></param>
+        <param name="INPUTS" type="matrix">
+          <row>
+            <col dtype="String" name="INPUTNAME">Address</col>
+            <col dtype="String" name="FIELD_TYPE">ADDRESS1</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">City</col>
+            <col dtype="String" name="FIELD_TYPE">LASTLINE1</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">State</col>
+            <col dtype="String" name="FIELD_TYPE">LASTLINE2</col>
+          </row>
+        </param>
+        <param name="OUTPUTS" type="matrix">
+          <row>
+            <col dtype="String" name="OUTPUTNAME">Address_Verified</col>
+            <col dtype="String" name="FIELD_TYPE">ADDRESS1</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">City_Verified</col>
+            <col dtype="String" name="FIELD_TYPE">CITY</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_County_Name</col>
+            <col dtype="String" name="FIELD_TYPE">USCNTYNAME</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">State_Verified</col>
+            <col dtype="String" name="FIELD_TYPE">STATE</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_State_FIPS</col>
+            <col dtype="String" name="FIELD_TYPE">USSTATECODE</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">ZIPCode</col>
+            <col dtype="String" name="FIELD_TYPE">ZIP</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_ZIP</col>
+            <col dtype="String" name="FIELD_TYPE">USZIP</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_ZIP4</col>
+            <col dtype="String" name="FIELD_TYPE">USZIP4</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_Numeric_Result_Code</col>
+            <col dtype="String" name="FIELD_TYPE">USNUMRESULT</col>
+          </row>
+          <row>
+            <col dtype="String" name="OUTPUTNAME">US_Result_Code</col>
+            <col dtype="String" name="FIELD_TYPE">USRESULT</col>
+          </row>
+        </param>
+        <param name="FIELD_MAP" type="matrix"/>
+        <param dtype="Unknown" isnull="true" name="DATA_CACHE_OVERRIDE" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="DATA_CACHE_PCT" type="single"></param>
+        <param dtype="Boolean" name="NON_CASS" type="single">true</param>
+        <param dtype="Boolean" name="PROPERCASE" type="single">true</param>
+        <param dtype="Boolean" name="CREATE3553" type="single">false</param>
+        <param dtype="Unknown" isnull="true" name="3553_LIST_PROCESSOR" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="3553_LIST_ID" type="single"></param>
+        <param dtype="Integer" name="3553_NUM_LISTS" type="single">0</param>
+        <param dtype="Unknown" isnull="true" name="3553_MAILER_NAME" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="3553_MAILER_ADDRESS1" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="3553_MAILER_ADDRESS2" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="3553_MAILER_LASTLINE" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="3553_FILENAME" type="single"></param>
+        <param dtype="Boolean" name="DASH_IN_ZIP" type="single">true</param>
+        <param dtype="Boolean" name="BLANKTONULL" type="single">true</param>
+        <param dtype="Boolean" name="CREATE_SOA" type="single">false</param>
+        <param dtype="Unknown" isnull="true" name="SOA_CUST_NUM" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SOA_CUST_NAME" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SOA_CUST_ADDRESS1" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SOA_CUST_ADDRESS2" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SOA_CUST_LASTLINE" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SOA_FILENAME" type="single"></param>
+        <param dtype="Boolean" name="SERP_CORRECT_RURAL" type="single">false</param>
+        <param dtype="Boolean" name="SERP_CORRECT_LVR" type="single">false</param>
+        <param dtype="Boolean" name="SERP_PASS_VALID" type="single">false</param>
+        <param dtype="Unknown" isnull="true" name="USE_DPV" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="USE_LACS" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="USE_RDI" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="USE_ELOT" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SKIP_NULL_CSZ_LINE" type="single"></param>
+        <param dtype="Boolean" name="USE_SLK" type="single">false</param>
+        <param dtype="Boolean" name="ABBREV_STREET" type="single">true</param>
+        <param dtype="Boolean" name="ABBREV_CITY" type="single">false</param>
+        <param dtype="Unknown" isnull="true" name="CORR_ACCENTS" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="LOGLEVEL" type="single"></param>
+      </paramset>
+    </step>
+    <step id="JOBDATA" iid="3">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">Job Specific Data 1</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Sends sample data to the External Data Provider node for the purpose of testing and debugging</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">10</value>
+          <value dtype="String">118</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param name="COLUMNS" type="matrix">
+          <row>
+            <col dtype="String" name="NAME">Address</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">200</col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">City</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">50</col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">State</col>
+            <col dtype="String" name="TYPE">STRING</col>
+            <col dtype="String" name="LENGTH">15</col>
+          </row>
+        </param>
+        <param name="DATA" type="matrix">
+          <row>
+            <col dtype="String" name="VALUE">1600 Pennsylvania Ave</col>
+          </row>
+          <row>
+            <col dtype="String" name="VALUE">Washington</col>
+          </row>
+          <row>
+            <col dtype="String" name="VALUE">DC</col>
+          </row>
+          <row>
+            <col dtype="String" name="VALUE">1060 West Addison St</col>
+          </row>
+          <row>
+            <col dtype="String" name="VALUE">Chicago</col>
+          </row>
+          <row>
+            <col dtype="String" name="VALUE">IL</col>
+          </row>
+        </param>
+        <param dtype="Integer" name="STRING_BYTESPERCHAR" type="single">4</param>
+      </paramset>
+    </step>
+    <linkage>
+      <link child="1" cslot="0" parent="0" pslot="0"/>
+    </linkage>
+  </page>
+
+</datafluxdocument>

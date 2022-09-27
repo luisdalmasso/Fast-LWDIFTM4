@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BatchDeploy" default="deployJobs" basedir=".">
+
+	<!-- Installation details -->
+	<property name="InstallRoot" location="D:\Program Files\SASHome"/>
+	<property name="PlatformVJR" location="${InstallRoot}\SASVersionedJarRepository\eclipse"/>
+	<property name="WorkingDirectory" location="${PlatformVJR}\plugins\sas.etl.migration.batch_904100.0.0.20130904190000_v940m1"/>
+	<property name="PickList" location="${InstallRoot}\SASDataIntegrationStudio\4.7\plugins\sas.etl.migration.batch\picklist"/>
+	<property name="SASLauncher" location="${PlatformVJR}\plugins\sas.launcher_904000.0.0.20130522190000_v940\sas.launcher.jar"/>
+	<property name="DISLocation" location="${InstallRoot}\SASDataIntegrationStudio\4.7"/>
+		
+	<!-- Connection details -->
+	<property name="metaserver" value="SASBAP.demo.sas.com"/><!-- Metadata server address -->
+	<property name="metaport" value="8561"/><!-- Metadata server port -->
+	<property name="metauser" value="Ahmed"/><!-- Metadata server credentials -->
+	<property name="metapass" value="Student1"/><!-- Metadata server credentials -->
+	<property name="metarepository" value="Foundation"/><!-- Name of the metadata repository -->
+	<property name="metaserverid" value="A549E8UT.AT000001"/><!-- Metadata ID of the metadata server (8.8) -->
+	<property name="servermachine" value="SASBAP.demo.sas.com"/><!-- App server address -->
+	<property name="serverport" value="8591"/><!-- App server port -->
+	<property name="username" value="Bruno"/><!-- App server credentials -->	
+	<property name="password" value="Student1"/><!-- App server credentials -->
+	<property name="batchserver" value="SASApp - SAS DATA Step Batch Server"/><!-- Name of the batch server to use for deployment -->
+	<property name="deploymentdir" location="Orion Star Jobs"/><!-- Directory where files will be deployed to. -->
+	<property name="sourcedir" location="D:\Workshop\dift\OrionStarJobs"/><!-- Directory where SAS code will be pulled from. -->
+	<property name="manifest" location="D:\Workshop\dift\batchdeploy\manifest.txt"/><!-- Manifest file location -->
+	
+	<!-- DO NOT EDIT ANYTHING BELOW THIS LINE -->
+					
+	<target name="deployJobs" description="Begin the job deployment process">
+		<java taskname="deploySASJobs" classname="com.sas.etl.migration.batch.CodeGenerator" classpath="${SASLauncher}" dir="${DISLocation}" fork="true" failonerror="false" resultproperty="deploySASJobs.returncode">
+    		<jvmarg value="-Djava.system.class.loader=com.sas.app.AppClassLoader" />
+			<jvmarg value="-Dsas.ext.config=${InstallRoot}\sas.java.ext.config" />
+				
+			<jvmarg value="-Dsas.app.class.dirs=${WorkingDirectory}" />
+			<jvmarg value="-Dsas.app.class.path=." />
+			<jvmarg value="-Djava.security.auth.login.config=${DISLocation}\security\login.config" />
+			<jvmarg value="-Djava.security.auth.policy=${DISLocation}\security\auth.policy" />
+			<jvmarg value="-Dcache.auth.policy=true" />
+			<jvmarg value="-Dsas.app.launch.config=${PickList}" />
+			<jvmarg value="-Dsas.app.repository.path=${PlatformVJR}" />
+			<!--<jvmarg value="-Dlog4j.configuration=file:///${DISLocation}\" />-->
+			<jvmarg value="-Xmx768m"/>
+			<jvmarg value="-Xss2048k"/>
+	
+			<arg value="-host" />
+			<arg value="${metaserver}" />
+			<arg value="-port" />
+			<arg value="${metaport}" />
+			<arg value="-user" />
+			<arg value="${username}" />
+			<arg value="-password" />
+			<arg value="${password}" />
+
+			<arg value="-metaserver" />
+			<arg value="${metaserver}" />
+			<arg value="-metaport" />
+			<arg value="${metaport}" />
+			<arg value="-metauser" />
+			<arg value="${metauser}" />
+			<arg value="-metapass" />
+			<arg value="${metapass}" />
+			<arg value="-metarepository" />
+			<arg value="${metarepository}" />
+			<arg value="-metaserverid" />
+			<arg value="${metaserverid}" />
+			<arg value="-servermachine" />
+			<arg value="${servermachine}" />
+			<arg value="-serverport" />
+			<arg value="${serverport}" />
+			<arg value="-batchserver" />
+			<arg value="${batchserver}" />
+			<arg value="-deploymentdir" />
+			<arg value="${deploymentdir}" />
+			<arg value="-sourcedir" />
+			<arg value="${sourcedir}" />
+			<arg value="-manifest" />
+			<arg value="${manifest}" />
+		</java>
+	</target>	
+</project>

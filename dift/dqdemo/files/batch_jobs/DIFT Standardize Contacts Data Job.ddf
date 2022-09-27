@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<datafluxdocument class="architectjob" version="1.2">
+
+  <jobid id="50"/>
+
+  <propset>
+    <prop name="_DESCRIPTION">
+      <value dtype="String"></value>
+    </prop>
+    <prop name="_NOTES">
+      <value dtype="String"></value>
+    </prop>
+    <prop name="AutoLayoutRequired"/>
+    <prop name="DefaultLayout">
+      <value dtype="String">LeftToRight</value>
+    </prop>
+    <prop name="GroupNodes"/>
+    <prop name="name">
+      <value dtype="String">DIFT Standardize Contacts Data Job</value>
+    </prop>
+    <prop name="ShowGridLines">
+      <value dtype="String">True</value>
+    </prop>
+    <prop name="SnapToGrid">
+      <value dtype="String">False</value>
+    </prop>
+    <prop name="STICKYNOTES"/>
+    <prop name="ZoomLevel">
+      <value dtype="String">27</value>
+    </prop>
+  </propset>
+
+  <paramset>
+    <param name="WFINPUTS" type="matrix"/>
+    <param name="WFOUTPUTS" type="matrix"/>
+  </paramset>
+
+  <page>
+    <propset>
+      <prop name="serial_targets"/>
+    </propset>
+    <step id="SOURCE_ODBC" iid="1">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">Contacts Table</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Data Source</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">53</value>
+          <value dtype="String">53</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param dtype="String" name="DSN" type="single">DSN=Orion Star Contacts;DFXTYPE=ODBC</param>
+        <param dtype="Unknown" isnull="true" name="MAX_OUTPUT_ROWS" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SCHEMA_NAME" type="single"></param>
+        <param dtype="String" name="TABLE_NAME" type="single">Contacts</param>
+        <param name="FIELDS" type="matrix">
+          <row>
+            <col dtype="String" name="NAME">ID</col>
+            <col dtype="String" name="OUTPUT_NAME">ID</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">COMPANY</col>
+            <col dtype="String" name="OUTPUT_NAME">COMPANY</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">CONTACT</col>
+            <col dtype="String" name="OUTPUT_NAME">CONTACT</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">ADDRESS</col>
+            <col dtype="String" name="OUTPUT_NAME">ADDRESS</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">CITY</col>
+            <col dtype="String" name="OUTPUT_NAME">CITY</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">STATE</col>
+            <col dtype="String" name="OUTPUT_NAME">STATE</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">PHONE</col>
+            <col dtype="String" name="OUTPUT_NAME">PHONE</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">OS</col>
+            <col dtype="String" name="OUTPUT_NAME">OS</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">DATABASE</col>
+            <col dtype="String" name="OUTPUT_NAME">DATABASE</col>
+            <col dtype="String" name="MAX_LENGTH">0</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+        </param>
+        <param name="SORT_FIELDS" type="matrix"/>
+        <param dtype="Unknown" isnull="true" name="CATALOG_NAME" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="POOL_NAME" type="single"></param>
+      </paramset>
+    </step>
+    <step id="STANDARDIZE" iid="2" ver="1">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">Standardize Fields</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Address, City, State, Phone</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">165</value>
+          <value dtype="String">53</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param name="STANDARDIZE_SOURCE" type="matrix">
+          <row>
+            <col dtype="String" name="INPUTNAME">ADDRESS</col>
+            <col dtype="String" name="OUTPUTNAME">ADDRESS_Stnd</col>
+            <col dtype="String" name="STANDARDIZE_DEFINITION">Address</col>
+            <col dtype="String" name="STANDARDIZE_SCHEME"></col>
+            <col dtype="Integer" name="STANDARDIZE_SCHEMEOPTS">0</col>
+            <col dtype="String" name="STANDARDIZE_MATCHDEFN"></col>
+            <col dtype="Integer" name="STANDARDIZE_MATCHSENS">0</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">STATE</col>
+            <col dtype="String" name="OUTPUTNAME">STATE_Stnd</col>
+            <col dtype="String" name="STANDARDIZE_DEFINITION">State/Province (Abbreviation)</col>
+            <col dtype="String" name="STANDARDIZE_SCHEME"></col>
+            <col dtype="Integer" name="STANDARDIZE_SCHEMEOPTS">0</col>
+            <col dtype="String" name="STANDARDIZE_MATCHDEFN"></col>
+            <col dtype="Integer" name="STANDARDIZE_MATCHSENS">0</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">PHONE</col>
+            <col dtype="String" name="OUTPUTNAME">PHONE_Stnd</col>
+            <col dtype="String" name="STANDARDIZE_DEFINITION">Phone</col>
+            <col dtype="String" name="STANDARDIZE_SCHEME"></col>
+            <col dtype="Integer" name="STANDARDIZE_SCHEMEOPTS">0</col>
+            <col dtype="String" name="STANDARDIZE_MATCHDEFN"></col>
+            <col dtype="Integer" name="STANDARDIZE_MATCHSENS">0</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CITY</col>
+            <col dtype="String" name="OUTPUTNAME">CITY_Stnd</col>
+            <col dtype="String" name="STANDARDIZE_DEFINITION">City</col>
+            <col dtype="String" name="STANDARDIZE_SCHEME"></col>
+            <col dtype="Integer" name="STANDARDIZE_SCHEMEOPTS">0</col>
+            <col dtype="String" name="STANDARDIZE_MATCHDEFN"></col>
+            <col dtype="Integer" name="STANDARDIZE_MATCHSENS">0</col>
+          </row>
+        </param>
+        <param name="FIELD_MAP" type="matrix">
+          <row>
+            <col dtype="String" name="INPUTNAME">ID</col>
+            <col dtype="String" name="OUTPUTNAME">ID</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">COMPANY</col>
+            <col dtype="String" name="OUTPUTNAME">COMPANY</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CONTACT</col>
+            <col dtype="String" name="OUTPUTNAME">CONTACT</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">ADDRESS</col>
+            <col dtype="String" name="OUTPUTNAME">ADDRESS</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CITY</col>
+            <col dtype="String" name="OUTPUTNAME">CITY</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">STATE</col>
+            <col dtype="String" name="OUTPUTNAME">STATE</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">PHONE</col>
+            <col dtype="String" name="OUTPUTNAME">PHONE</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">OS</col>
+            <col dtype="String" name="OUTPUTNAME">OS</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">DATABASE</col>
+            <col dtype="String" name="OUTPUTNAME">DATABASE</col>
+          </row>
+        </param>
+        <param dtype="Unknown" isnull="true" name="BF_PATH" type="single"></param>
+        <param dtype="String" name="BF_LOCALE" type="single">ENUSA</param>
+        <param dtype="Boolean" name="PRESERVENULL" type="single">true</param>
+        <param dtype="Unknown" isnull="true" name="LOCALE_FIELD" type="single"></param>
+        <param name="LOCALE_LIST" type="matrix"/>
+        <param dtype="Unknown" isnull="true" name="EXCEPTION_ACTION" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="EXCEPTION_INFO" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SCORE_DEPTH" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="RESOURCE_LEVEL" type="single"></param>
+        <param dtype="Boolean" name="STDZ_FLAG" type="single">false</param>
+      </paramset>
+    </step>
+    <step id="GENDER" iid="3" ver="1">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">Gender Analysis</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Based on CONTACT field</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">277</value>
+          <value dtype="String">52</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param name="GENDER_SOURCE" type="matrix">
+          <row>
+            <col dtype="String" name="INPUTNAME">CONTACT</col>
+            <col dtype="String" name="OUTPUTNAME">CONTACT_Gender</col>
+            <col dtype="String" name="GENDER_DEFINITION">Name</col>
+          </row>
+        </param>
+        <param name="FIELD_MAP" type="matrix">
+          <row>
+            <col dtype="String" name="INPUTNAME">ID</col>
+            <col dtype="String" name="OUTPUTNAME">ID</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">COMPANY</col>
+            <col dtype="String" name="OUTPUTNAME">COMPANY</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CONTACT</col>
+            <col dtype="String" name="OUTPUTNAME">CONTACT</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">ADDRESS</col>
+            <col dtype="String" name="OUTPUTNAME">ADDRESS</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CITY</col>
+            <col dtype="String" name="OUTPUTNAME">CITY</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">STATE</col>
+            <col dtype="String" name="OUTPUTNAME">STATE</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">PHONE</col>
+            <col dtype="String" name="OUTPUTNAME">PHONE</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">OS</col>
+            <col dtype="String" name="OUTPUTNAME">OS</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">DATABASE</col>
+            <col dtype="String" name="OUTPUTNAME">DATABASE</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">ADDRESS_Stnd</col>
+            <col dtype="String" name="OUTPUTNAME">ADDRESS_Stnd</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">STATE_Stnd</col>
+            <col dtype="String" name="OUTPUTNAME">STATE_Stnd</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">PHONE_Stnd</col>
+            <col dtype="String" name="OUTPUTNAME">PHONE_Stnd</col>
+          </row>
+          <row>
+            <col dtype="String" name="INPUTNAME">CITY_Stnd</col>
+            <col dtype="String" name="OUTPUTNAME">CITY_Stnd</col>
+          </row>
+        </param>
+        <param dtype="Unknown" isnull="true" name="BF_PATH" type="single"></param>
+        <param dtype="String" name="BF_LOCALE" type="single">ENUSA</param>
+        <param dtype="Boolean" name="PRESERVENULL" type="single">true</param>
+        <param dtype="Unknown" isnull="true" name="LOCALE_FIELD" type="single"></param>
+        <param name="LOCALE_LIST" type="matrix"/>
+        <param dtype="Unknown" isnull="true" name="EXCEPTION_ACTION" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="EXCEPTION_INFO" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="SCORE_DEPTH" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="RESOURCE_LEVEL" type="single"></param>
+      </paramset>
+    </step>
+    <step id="DEST_UPDATEODBC" iid="4">
+      <propset>
+        <prop name="color"/>
+        <prop name="default_target"/>
+        <prop name="description">
+          <value dtype="String">Data Target (Update)</value>
+        </prop>
+        <prop name="descriptive_text">
+          <value dtype="String">Update Contacts</value>
+        </prop>
+        <prop name="node_position">
+          <value dtype="String">390</value>
+          <value dtype="String">53</value>
+        </prop>
+        <prop name="notes">
+          <value dtype="String"></value>
+        </prop>
+        <prop name="owning_group_id"/>
+        <prop name="serial_target_position"/>
+      </propset>
+      <paramset>
+        <param dtype="String" name="DSN" type="single">DSN=Orion Star Contacts;DFXTYPE=ODBC</param>
+        <param dtype="Unknown" isnull="true" name="SCHEMA_NAME" type="single"></param>
+        <param dtype="String" name="TABLE_NAME" type="single">Contacts</param>
+        <param dtype="Unknown" isnull="true" name="CATALOG_NAME" type="single"></param>
+        <param name="FIELDS" type="matrix">
+          <row>
+            <col dtype="String" name="NAME">ID</col>
+            <col dtype="String" name="OUTPUT_NAME">ID</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">COMPANY</col>
+            <col dtype="String" name="OUTPUT_NAME">COMPANY</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">CONTACT</col>
+            <col dtype="String" name="OUTPUT_NAME">CONTACT</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">CONTACT_Gender</col>
+            <col dtype="String" name="OUTPUT_NAME">Gender</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">ADDRESS_Stnd</col>
+            <col dtype="String" name="OUTPUT_NAME">ADDRESS</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">CITY_Stnd</col>
+            <col dtype="String" name="OUTPUT_NAME">CITY</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">STATE_Stnd</col>
+            <col dtype="String" name="OUTPUT_NAME">STATE</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">PHONE_Stnd</col>
+            <col dtype="String" name="OUTPUT_NAME">PHONE</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">OS</col>
+            <col dtype="String" name="OUTPUT_NAME">OS</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+          <row>
+            <col dtype="String" name="NAME">DATABASE</col>
+            <col dtype="String" name="OUTPUT_NAME">DATABASE</col>
+            <col dtype="String" name="DEF_OVERRIDE"></col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+        </param>
+        <param dtype="Integer" name="COMMIT_EVERY" type="single">0</param>
+        <param name="PRIMARY_KEY" type="matrix">
+          <row>
+            <col dtype="String" name="INPUT_FIELD">ID</col>
+            <col dtype="String" name="OUTPUT_FIELD">ID</col>
+            <col dtype="Unknown" isnull="true" name="SQL_OVERRIDE"></col>
+          </row>
+        </param>
+        <param dtype="Boolean" name="BIND_USING_TABLE_TYPES" type="single">true</param>
+        <param dtype="Integer" name="MAX_ERROR_COUNT" type="single">500</param>
+        <param dtype="Unknown" isnull="true" name="POOL_NAME" type="single"></param>
+        <param dtype="Unknown" isnull="true" name="STATUS_FIELD" type="single"></param>
+        <param dtype="String" name="ENABLE_DDL" type="single">true</param>
+        <param dtype="Integer" name="BULK_ROW_COUNT" type="single">1</param>
+      </paramset>
+    </step>
+    <linkage>
+      <link child="1" cslot="0" parent="0" pslot="0"/>
+      <link child="2" cslot="0" parent="1" pslot="0"/>
+      <link child="3" cslot="0" parent="2" pslot="0"/>
+    </linkage>
+  </page>
+
+</datafluxdocument>
